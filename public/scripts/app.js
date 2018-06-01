@@ -1,36 +1,87 @@
 "use strict";
 
-var visibility = false;
+var app = {
+  title: "Indecision app",
+  subtitle: "Put your life in the hands of a computer",
+  options: []
+};
 
-var toggleDetails = function toggleDetails() {
-  visibility = !visibility;
-  render();
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  var option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = "";
+    renderApp();
+  }
+};
+
+var removeAll = function removeAll() {
+  app.options = [];
+  renderApp();
+};
+
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  alert(app.options[randomNum]);
 };
 
 var appRoot = document.getElementById("app");
 
-var render = function render() {
+var renderApp = function renderApp() {
   var template = React.createElement(
     "div",
     null,
     React.createElement(
       "h1",
       null,
-      "Toggle visibility"
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      "p",
+      null,
+      app.subtitle
+    ),
+    React.createElement(
+      "p",
+      null,
+      app.options.length > 0 ? "Here your options" : "No options"
     ),
     React.createElement(
       "button",
-      { onClick: toggleDetails },
-      visibility ? "Hide details" : "Show details"
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      "What should I do?"
     ),
-    visibility && React.createElement(
-      "p",
+    React.createElement(
+      "ol",
       null,
-      "Here some additional info about it!"
+      app.options.map(function (option) {
+        return React.createElement(
+          "li",
+          { key: option },
+          option
+        );
+      })
+    ),
+    React.createElement(
+      "form",
+      { onSubmit: onFormSubmit },
+      React.createElement("input", { autoFocus: true, type: "text", name: "option" }),
+      React.createElement(
+        "button",
+        null,
+        "Add option"
+      ),
+      React.createElement(
+        "button",
+        { onClick: removeAll },
+        "Remove All"
+      )
     )
   );
 
   ReactDOM.render(template, appRoot);
 };
 
-render();
+renderApp();
