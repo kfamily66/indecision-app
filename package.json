@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":
-      "babel src/app.js --out-file=public/scripts/app.js --presets=env,react -w"
+    "start": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react -w"
   },
   "author": "Eugene Kozlov",
   "license": "MIT",
   "dependencies": {
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1"
-  }
+  },
+  "devDependencies": {}
 }
