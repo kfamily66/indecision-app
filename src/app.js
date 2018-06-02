@@ -40,8 +40,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
   handleRemoveAll() {
     console.log("Remove All");
+    console.log(this.props.options);
   }
   render() {
     return (
@@ -70,6 +75,7 @@ class AddOption extends React.Component {
     const option = e.target.option.value.trim();
     if (option) {
       console.log(`Form submitted! ${option}`);
+      e.target.option.value = "";
     }
   }
   render() {
