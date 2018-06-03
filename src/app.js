@@ -2,7 +2,7 @@ class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: []
+      options: props.options
     };
     this.handleRemoveAll = this.handleRemoveAll.bind(this);
     this.handlePick = this.handlePick.bind(this);
@@ -39,7 +39,7 @@ class IndecisionApp extends React.Component {
 
     return (
       <div>
-        <Header title={title} subtitle={subtitle} />
+        <Header subtitle={subtitle} />
         <Action
           hasOption={this.state.options.length > 0}
           handlePick={this.handlePick}
@@ -54,24 +54,22 @@ class IndecisionApp extends React.Component {
   }
 }
 
+IndecisionApp.defaultProps = {
+  options: []
+};
+
 const Header = props => {
   return (
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      {props.subtitle && <h2>{props.subtitle}</h2>}
     </div>
   );
 };
-// class Header extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>{this.props.title}</h1>
-//         <h2>{this.props.subtitle}</h2>
-//       </div>
-//     );
-//   }
-// }
+
+Header.defaultProps = {
+  title: "Indecision"
+};
 
 const Action = props => {
   return (
@@ -83,21 +81,6 @@ const Action = props => {
   );
 };
 
-// class Action extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <button
-//           onClick={this.props.handlePick}
-//           disabled={!this.props.hasOption}
-//         >
-//           What should I do?
-//         </button>
-//       </div>
-//     );
-//   }
-// }
-
 const Options = props => {
   return (
     <div>
@@ -106,18 +89,6 @@ const Options = props => {
     </div>
   );
 };
-// class Options extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <button onClick={this.props.handleRemoveAll}>Remove All</button>
-//         {this.props.options.map(option => (
-//           <Option key={option} optionText={option} />
-//         ))}
-//       </div>
-//     );
-//   }
-// }
 
 const Option = props => {
   return (
@@ -126,15 +97,7 @@ const Option = props => {
     </div>
   );
 };
-// class Option extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <p>{this.props.optionText}</p>
-//       </div>
-//     );
-//   }
-// }
+
 class AddOption extends React.Component {
   constructor(props) {
     super(props);

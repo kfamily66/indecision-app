@@ -17,7 +17,7 @@ var IndecisionApp = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
 
     _this.state = {
-      options: []
+      options: props.options
     };
     _this.handleRemoveAll = _this.handleRemoveAll.bind(_this);
     _this.handlePick = _this.handlePick.bind(_this);
@@ -65,7 +65,7 @@ var IndecisionApp = function (_React$Component) {
       return React.createElement(
         "div",
         null,
-        React.createElement(Header, { title: title, subtitle: subtitle }),
+        React.createElement(Header, { subtitle: subtitle }),
         React.createElement(Action, {
           hasOption: this.state.options.length > 0,
           handlePick: this.handlePick
@@ -82,6 +82,10 @@ var IndecisionApp = function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
+IndecisionApp.defaultProps = {
+  options: []
+};
+
 var Header = function Header(props) {
   return React.createElement(
     "div",
@@ -91,23 +95,17 @@ var Header = function Header(props) {
       null,
       props.title
     ),
-    React.createElement(
+    props.subtitle && React.createElement(
       "h2",
       null,
       props.subtitle
     )
   );
 };
-// class Header extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>{this.props.title}</h1>
-//         <h2>{this.props.subtitle}</h2>
-//       </div>
-//     );
-//   }
-// }
+
+Header.defaultProps = {
+  title: "Indecision"
+};
 
 var Action = function Action(props) {
   return React.createElement(
@@ -120,21 +118,6 @@ var Action = function Action(props) {
     )
   );
 };
-
-// class Action extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <button
-//           onClick={this.props.handlePick}
-//           disabled={!this.props.hasOption}
-//         >
-//           What should I do?
-//         </button>
-//       </div>
-//     );
-//   }
-// }
 
 var Options = function Options(props) {
   return React.createElement(
@@ -150,18 +133,6 @@ var Options = function Options(props) {
     })
   );
 };
-// class Options extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <button onClick={this.props.handleRemoveAll}>Remove All</button>
-//         {this.props.options.map(option => (
-//           <Option key={option} optionText={option} />
-//         ))}
-//       </div>
-//     );
-//   }
-// }
 
 var Option = function Option(props) {
   return React.createElement(
@@ -174,15 +145,6 @@ var Option = function Option(props) {
     )
   );
 };
-// class Option extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <p>{this.props.optionText}</p>
-//       </div>
-//     );
-//   }
-// }
 
 var AddOption = function (_React$Component2) {
   _inherits(AddOption, _React$Component2);
