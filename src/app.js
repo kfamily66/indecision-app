@@ -31,6 +31,21 @@ class IndecisionApp extends React.Component {
 
     this.setState(prevState => ({ options: prevState.options.concat(option) }));
   }
+  componentDidMount() {
+    const json = localStorage.getItem("options");
+    const options = JSON.parse(json);
+
+    if (options) {
+      this.setState(() => ({ options }));
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem("options", json);
+    }
+  }
+
   render() {
     const title = "Indecision";
     const subtitle = "Put your life in the hands of a computer.";
