@@ -6,38 +6,30 @@ import Action from "./Action";
 import Options from "./Options";
 
 export default class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: []
-    };
-    this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.handleRemoveOption = this.handleRemoveOption.bind(this);
-  }
-  handleRemoveAll() {
+  state = {
+    options: []
+  };
+  handleRemoveAll = () => {
     this.setState(() => ({ options: [] }));
-  }
-  handleRemoveOption(optionToRemove) {
+  };
+  handleRemoveOption = optionToRemove => {
     this.setState(prevState => ({
       options: prevState.options.filter(option => option !== optionToRemove)
     }));
-  }
-  handlePick() {
+  };
+  handlePick = () => {
     const randomNumber = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNumber];
     alert(option);
-  }
-  handleAddOption(option) {
+  };
+  handleAddOption = option => {
     if (!option) {
       return "Enter valid value to add option";
     } else if (this.state.options.indexOf(option) > -1) {
       return "This option already exist";
     }
-
     this.setState(prevState => ({ options: prevState.options.concat(option) }));
-  }
+  };
   componentDidMount() {
     const json = localStorage.getItem("options");
     const options = JSON.parse(json);
@@ -52,7 +44,6 @@ export default class IndecisionApp extends React.Component {
       localStorage.setItem("options", json);
     }
   }
-
   render() {
     const title = "Indecision";
     const subtitle = "Put your life in the hands of a computer.";
