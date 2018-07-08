@@ -10,7 +10,7 @@ const OptionModal = props => (
     closeTimeoutMS={200}
     ariaHideApp={false}
   >
-    <h3 className="modal__title">You should choice</h3>
+    <h3 className="modal__title">You should choose</h3>
     {props.selectedOption && <p className="modal__body">{props.selectedOption}</p>}
     <button className="button" onClick={props.handleClearSelectedOption}>
       Okay

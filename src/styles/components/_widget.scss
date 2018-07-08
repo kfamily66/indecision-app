@@ -1,6 +1,7 @@
 .widget {
   background: $light-blue;
   margin-bottom: $xl-size;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05), 0 10px 10px rgba(0, 0, 0, 0.05);
 }
 
 .widget-header {
