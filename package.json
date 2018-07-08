@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "start": "node server/server.js",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "Eugene Kozlov",
   "license": "MIT",
