@@ -1,6 +1,6 @@
 # **Indecision-app** is a React-based single-page application for making easier to take a tough decision between multiple choices.
 
-[Live demo on Heroku](https://guarded-sierra-95022.herokuapp.com)
+[Live demo on Heroku](https://fast-river-18917.herokuapp.com/)
 
 ## Core functionality:
 
